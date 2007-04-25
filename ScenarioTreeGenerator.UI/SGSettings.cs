@@ -35,16 +35,16 @@ namespace ScenarioTreeGenerator.UI
 
         private string GenerateOutputFilename()
         {
-            int L = int.Parse(textBoxScenarios.Text);
-            int S = int.Parse(textBoxStages.Text);
+            int L = int.Parse(this.textBoxScenarios.Text);
+            int S = int.Parse(this.textBoxStages.Text);
 
-            return Path.Combine(textBoxOutputFolder.Text, "Scenarios_" + L + "_" + S + ".dat");
+            return Path.Combine(this.textBoxOutputFolder.Text, "Scenarios_" + L + "_" + S + ".dat");
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            int L = int.Parse(textBoxScenarios.Text);
-            int S = int.Parse(textBoxStages.Text);
+            int L = int.Parse(this.textBoxScenarios.Text);
+            int S = int.Parse(this.textBoxStages.Text);
 
             MultivariateTree mv = new MultivariateTree(this.doc.DefaultProject as ProjectROV);
 
@@ -88,8 +88,8 @@ namespace ScenarioTreeGenerator.UI
         {
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
-                textBoxOutputFolder.Text = folderBrowserDialog1.SelectedPath;
-                textBoxFileName.Text = GenerateOutputFilename();
+                this.textBoxOutputFolder.Text = folderBrowserDialog1.SelectedPath;
+                this.textBoxFileName.Text = GenerateOutputFilename();
             }
         }
 

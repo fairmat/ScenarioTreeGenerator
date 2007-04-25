@@ -92,9 +92,12 @@ namespace ScenarioReduction
                     tn.Value = (float[])predecessor.Value.Clone();
                 }
                 else
-                {  //IS THE ROOT
+                {  
+                    // This is the root.
                     tn.Value = new float[1];
-                    tn.Value[0] = 0;           //START WEATHER STATE VARIABLE
+
+                    // Prepare the weather state variable.
+                    tn.Value[0] = 0;
                     tn.Probability = 1.0;
                 }
 
@@ -105,7 +108,8 @@ namespace ScenarioReduction
                 Add(tn);
             }
 
-            entry_nodes.Add(this[Count - 1]); //the last inserted node
+            // Adds the last inserted node.
+            entry_nodes.Add(this[Count - 1]);
 
             //now start
 

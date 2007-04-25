@@ -28,7 +28,6 @@ using Mono.Addins;
 // This plug-in is also an addin root.
 [assembly: Mono.Addins.AddinRoot("ScenarionTreeGenerator", "1.0")]
 
-
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
