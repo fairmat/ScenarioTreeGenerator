@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScenarioTreeGenerator.UI", "ScenarioTreeGenerator.UI\ScenarioTreeGenerator.UI.csproj", "{D2945F30-0435-47E8-BF61-E3C25DD850A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScenarioReduction", "ScenarioReduction\ScenarioReduction.csproj", "{EC4AFD73-6510-4229-83B1-497A1FAD4702}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2945F30-0435-47E8-BF61-E3C25DD850A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2945F30-0435-47E8-BF61-E3C25DD850A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2945F30-0435-47E8-BF61-E3C25DD850A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2945F30-0435-47E8-BF61-E3C25DD850A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC4AFD73-6510-4229-83B1-497A1FAD4702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC4AFD73-6510-4229-83B1-497A1FAD4702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC4AFD73-6510-4229-83B1-497A1FAD4702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC4AFD73-6510-4229-83B1-497A1FAD4702}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

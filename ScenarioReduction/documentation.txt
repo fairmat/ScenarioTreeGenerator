@@ -1,0 +1,62 @@
+﻿The program generate a .dat file for AMPL referring to the following parameters definition
+
+set NODES ordered;  #set of event tree nodes
+N_prob{NODES}; #vector of nodes' unconditional probabilities
+N_t{NODES};    #vector of nodes' periods
+N_prev{NODES}; #vector of parents id
+N_CO{NODES}; #vector of node values for the component 0
+N_C1{NODES}; #vector of node values for the component 1
+N_C2{NODES}; #vector of node values for the component 2
+N_C3{NODES}; #vector of node values for the component 3
+
+Output example:
+param:NODES:    N_prob  N_t N_prev  N_C0    N_C1    N_C2    N_C3    :=
+1   1   1   1   120 60  110 150
+2   0.0625  2   1   120.2   61.75   110.2   148.25
+3   0.0625  2   1   120.2   61.75   110.2   146.25
+4   0.0625  2   1   120.2   61.75   108.2   148.25
+5   0.0625  2   1   120.2   61.75   108.2   146.25
+6   0.0625  2   1   120.2   59.75   110.2   148.25
+....
+
+USAGE:
+------
+on linux the program is interpreted by the mono interpreter, on Windows the command mono
+can be omitted.
+
+The usage is the following:
+
+mono ScenarioReduction.exe infilename action [out_scenarios] [outputmode default=A]
+
+-infilename is the a text file describing the event tree, node-by-node, where each
+node is defined by the following lines:
+structure:
+Node:
+Id:= id of the node (the root have id=1)
+p := absolute node probability
+t := period
+v := component1 [tab] component2 [tab]... componentn
+ParentId := parent id
+
+-action can be one the following characters:
+  R: reduce
+  N: no operation (convert the tree in the ampl format)
+-output mode: C complete, A only AMPL output");
+
+Examples:
+1) open scenario description file test.txt reduce it to 20 scenarios and displays
+the output on screen (use > to redirect on a file)
+
+mono ScenarioReduction.exe test.txt R 20
+
+2) the following command  read the scenario description file test.txt and
+shows the contents in ampl format.
+
+mono ScenarioReduction.exe test.txt N
+
+
+History:
+---------
+
+1.2.1
+the threshold on the probability has been set to 10e-6

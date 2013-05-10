@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EC4AFD73-6510-4229-83B1-497A1FAD4702}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>scenario_reduction</RootNamespace>
+    <AssemblyName>ScenarioReduction</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <StartupObject>
+    </StartupObject>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DVPLDOM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0c08731b4bb5a116, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DVPLReferences\DVPLDOM.dll</HintPath>
+    </Reference>
+    <Reference Include="DVPLDOME, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0c08731b4bb5a116, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DVPLReferences\DVPLDOME.dll</HintPath>
+    </Reference>
+    <Reference Include="DVPLI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0c08731b4bb5a116, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DVPLReferences\DVPLI.dll</HintPath>
+    </Reference>
+    <Reference Include="DVPLInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0c08731b4bb5a116, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DVPLReferences\DVPLInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="DVPLUtils, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0c08731b4bb5a116, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DVPLReferences\DVPLUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Addins, Version=0.6.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DVPLReferences\Mono.Addins.dll</HintPath>
+    </Reference>
+    <Reference Include="SolverBase, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0c08731b4bb5a116, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DVPLReferences\SolverBase.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BackwardReduction.cs" />
+    <Compile Include="ExpressExporter.cs" />
+    <Compile Include="MChainTree.cs" />
+    <Compile Include="MultivariateAR1Tree.cs" />
+    <Compile Include="MultivariateTree.cs" />
+    <Compile Include="NormalGenerator.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScenarioReduction.cs" />
+    <Compile Include="ScenarioTree.cs" />
+    <Compile Include="SimultaneousBackwardReduction.cs" />
+    <Compile Include="TreeNode.cs" />
+    <Compile Include="WTree.cs" />
+    <Compile Include="XTree.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="documentation.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
