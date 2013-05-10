@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BackwardReduction.cs" />
+    <Compile Include="ScenarioDescriptiveStatistics.cs" />
     <Compile Include="ExpressExporter.cs" />
     <Compile Include="MChainTree.cs" />
     <Compile Include="MultivariateAR1Tree.cs" />

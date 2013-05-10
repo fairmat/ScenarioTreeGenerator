@@ -18,31 +18,25 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-
 namespace ScenarioReduction
 {
-
-    enum WTypes
-    { Dry = 0, Normal = 1, Rainy = 2 };
-    /*
-
-    class WTreeNode : TreeNode
+    public class WTree : ScenarioTree
     {
-        public
-    }
-    */
+        private int weatherTypes = 3; //0,1,2
+        private double[,] mcProbability;
 
-    class WTree : ScenarioTree
-    {
-        int WeatherTypes = 3; //0,1,2
-        double[,] MC_prob;
+        private int lastPeriodIndex = 11;
 
-        int LAST_PERIOD_INDEX = 11;
-
-
-        public WTree(int p_Periods)
+        public WTree(int periods)
         {
-            LAST_PERIOD_INDEX = p_Periods;
+            this.lastPeriodIndex = periods;
+        }
+
+        private enum WTypes
+        {
+            Dry = 0,
+            Normal = 1,
+            Rainy = 2
         }
 
         public override void Generate()
@@ -50,54 +44,42 @@ namespace ScenarioReduction
             List<TreeNode> entry_nodes = new List<TreeNode>();
             List<TreeNode> new_entry_nodes = new List<TreeNode>();
 
-            // int[] event_start={5,9};
+            int[] eventStart = { 3, 6, 9 };
 
-            int[] event_start = { 3, 6, 9 };
-
-            if (LAST_PERIOD_INDEX < 5)
+            if (this.lastPeriodIndex < 5)
             {
-                event_start = new int[1];
-                event_start[0] = 2;
+                eventStart = new int[1];
+                eventStart[0] = 2;
             }
-            //if(LAST_PERIOD_INDEX!=11)
-            //    event_start[0]=2;
 
+            int[] eventEnd = new int[eventStart.Length];
 
-            int[] event_end = new int[event_start.Length];
+            this.mcProbability = new double[this.weatherTypes, this.weatherTypes];
 
-            MC_prob = new double[WeatherTypes, WeatherTypes];
+            this.mcProbability[(int)WTypes.Dry, (int)WTypes.Dry] = 0.4;
+            this.mcProbability[(int)WTypes.Dry, (int)WTypes.Normal] = 0.3;
+            this.mcProbability[(int)WTypes.Dry, (int)WTypes.Rainy] = 0.3;
 
+            this.mcProbability[(int)WTypes.Normal, (int)WTypes.Dry] = 0.4;
+            this.mcProbability[(int)WTypes.Normal, (int)WTypes.Normal] = 0.2;
+            this.mcProbability[(int)WTypes.Normal, (int)WTypes.Rainy] = 0.4;
 
-            MC_prob[(int)WTypes.Dry, (int)WTypes.Dry] = 0.4;
-            MC_prob[(int)WTypes.Dry, (int)WTypes.Normal] = 0.3;
-            MC_prob[(int)WTypes.Dry, (int)WTypes.Rainy] = 0.3;
-
-            MC_prob[(int)WTypes.Normal, (int)WTypes.Dry] = 0.4;
-            MC_prob[(int)WTypes.Normal, (int)WTypes.Normal] = 0.2;
-            MC_prob[(int)WTypes.Normal, (int)WTypes.Rainy] = 0.4;
-
-            MC_prob[(int)WTypes.Rainy, (int)WTypes.Dry] = 0.3;
-            MC_prob[(int)WTypes.Rainy, (int)WTypes.Normal] = 0.5;
-            MC_prob[(int)WTypes.Rainy, (int)WTypes.Rainy] = 0.2;
-
-
-
-
-
+            this.mcProbability[(int)WTypes.Rainy, (int)WTypes.Dry] = 0.3;
+            this.mcProbability[(int)WTypes.Rainy, (int)WTypes.Normal] = 0.5;
+            this.mcProbability[(int)WTypes.Rainy, (int)WTypes.Rainy] = 0.2;
 
             //generate start and end...
-            for (int e = 0; e < event_start.Length; e++)
+            for (int e = 0; e < eventStart.Length; e++)
             {
-                if (e == event_start.Length - 1)
-                    event_end[e] = LAST_PERIOD_INDEX;
+                if (e == eventStart.Length - 1)
+                    eventEnd[e] = this.lastPeriodIndex;
                 else
-                    event_end[e] = event_start[e + 1] - 1;
+                    eventEnd[e] = eventStart[e + 1] - 1;
             }
-            ////////////////////
 
             //first part, one node for each period
             TreeNode predecessor = null;
-            for (int t = 1; t < event_start[0]; t++)
+            for (int t = 1; t < eventStart[0]; t++)
             {
                 TreeNode tn = new TreeNode();
 
@@ -119,33 +101,28 @@ namespace ScenarioReduction
                 tn.Attributes = new string[1];
                 tn.Attributes[0] = ((WTypes)tn.Value[0]).ToString();
 
-
-                //     let W_NODES:= W_NODES union {current_i};
-
-
-
                 predecessor = tn;
                 Add(tn);
             }
+
             entry_nodes.Add(this[Count - 1]); //the last inserted node
 
             //now start
 
-            for (int subdivisions = 0; subdivisions < event_start.Length; subdivisions++)
+            for (int subdivisions = 0; subdivisions < eventStart.Length; subdivisions++)
             {
-
                 new_entry_nodes.Clear();
                 foreach (TreeNode entry_node in entry_nodes)
                 {
-                    for (int t = event_start[subdivisions]; t <= event_end[subdivisions]; t++)
+                    for (int t = eventStart[subdivisions]; t <= eventEnd[subdivisions]; t++)
                     {
-                        if (t == event_start[subdivisions])
+                        if (t == eventStart[subdivisions])
                         {
-                            for (int weather = 0; weather < WeatherTypes; weather++)
+                            for (int weather = 0; weather < this.weatherTypes; weather++)
                             {
                                 TreeNode tn = new TreeNode(t - 1,
                                                            entry_node,
-                                                           MC_prob[(int)entry_node.Value[0], weather] * entry_node.Probability);
+                                                           this.mcProbability[(int)entry_node.Value[0], weather] * entry_node.Probability);
 
                                 tn.Value = new float[1];
                                 tn.Value[0] = weather;
@@ -154,16 +131,15 @@ namespace ScenarioReduction
                                 tn.Attributes[0] = ((WTypes)tn.Value[0]).ToString();
 
                                 Add(tn);
-                                if (t == event_end[subdivisions])
+                                if (t == eventEnd[subdivisions])
                                     new_entry_nodes.Add(tn);
                             }
-
                         }
                         else
                         {
-                            for (int weather = 0; weather < WeatherTypes; weather++)
+                            for (int weather = 0; weather < this.weatherTypes; weather++)
                             {
-                                predecessor = this[Count - WeatherTypes];
+                                predecessor = this[Count - this.weatherTypes];
 
                                 if (predecessor.Period != t - 2)
                                     throw new Exception("!");
@@ -172,8 +148,6 @@ namespace ScenarioReduction
                                                            predecessor,
                                                            predecessor.Probability);
 
-
-
                                 tn.Value = new float[1];
                                 tn.Value[0] = weather;
 
@@ -182,20 +156,16 @@ namespace ScenarioReduction
 
                                 Add(tn);
 
-                                if (t == event_end[subdivisions])
+                                if (t == eventEnd[subdivisions])
                                     new_entry_nodes.Add(tn);
                             }
                         }
-                    } //# end next t
-
-                    //for(int k=0;k<WeatherTypes;k++)
-                    //   new_entry_nodes.Add(this[Count-1-k]);
-
-                } //# next entry node
+                    }
+                }
 
                 entry_nodes.Clear();
                 entry_nodes.AddRange(new_entry_nodes);
-            } //# end for subdivisions
+            }
 
             return;
         }

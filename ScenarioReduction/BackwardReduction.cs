@@ -56,8 +56,6 @@ namespace ScenarioReduction
                 {
                     scenario_distance_matrix[n1][n2 - n1 - 1] = (float)ScenarioDistance(n1, n2, standardizedTrajectories[n1],
                                                                          standardizedTrajectories[n2]);
-
-                    //scenario_distance_matrix[n2, n1] = scenario_distance_matrix[n1, n2];
                 }
             }
 
@@ -319,8 +317,6 @@ namespace ScenarioReduction
             for (int k = 0; k < N - K; k++)
             {
                 DateTime T0 = DateTime.Now;
-                //int s = RemoveOneScenario();
-                //int s = RemoveOneScenarioV2();
                 int s = RemoveOneScenarioV3();
                 DateTime T1 = DateTime.Now;
 
@@ -328,15 +324,6 @@ namespace ScenarioReduction
 
                 //
                 int actual_scenarios = N - k - 1;
-                //if we have to
-                /*
-                if (actual_scenarios==)
-                {
-                    PackKeepedScenarios(actual_scenarios, N);
-                    //ReducedScenarioTree
-                }
-                 */
-
             }//next k
 
             PackKeepedScenarios(K, N);

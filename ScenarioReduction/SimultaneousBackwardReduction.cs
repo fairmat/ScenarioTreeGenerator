@@ -20,21 +20,18 @@ using System.Text;
 
 namespace ScenarioReduction
 {
-    class SimultaneousBackwardReduction : BackwardReduction
+    public class SimultaneousBackwardReduction : BackwardReduction
     {
-        public SimultaneousBackwardReduction(ScenarioTree p_st)
-            : base(p_st)
+        public SimultaneousBackwardReduction(ScenarioTree scenarioTree)
+            : base(scenarioTree)
         {
         }
 
-
         /// <summary>
-        ///
         /// </summary>
-        /// <param name="K">The new number of scenarios</param>
-        public override void Reduce(int K)
+        /// <param name="k">The new number of scenarios</param>
+        public override void Reduce(int k)
         {
-
         }
     }
 }

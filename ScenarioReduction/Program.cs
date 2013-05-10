@@ -34,7 +34,6 @@ namespace ScenarioReduction
 
                 Console.WriteLine("ScenarioReduction V1.2.2\n");
                 Console.WriteLine("Usage: ScenarioReduction infilename  action [out_scenarios]  [outputmode default=A] [Options]");
-                //Console.WriteLine("mode = b (default) : extended  outputs");
 
                 Console.WriteLine("action can be: rnd:reduce  or N: no operation (displays in output the original scenario) ");
                 Console.WriteLine("output mode: C complete (descriptive statistics), A only AMPL output");
@@ -87,9 +86,6 @@ namespace ScenarioReduction
             }
             ScenarioReduction SRA = null;
 
-
-            //ScenarioTree ST =GenerateOld();
-            //ScenarioTree ST = NewModel();
             ScenarioTree ST = ScenarioTree.FromFile(infilename);
 
 
@@ -99,12 +95,6 @@ namespace ScenarioReduction
                 ST.DescriptiveStatistics(Console.Out);
 
             }
-            //Console.WriteLine("Merged Tree:");
-            //Console.WriteLine(ST.ToString());
-
-
-            //if(mode=="C")
-            //    WriteTrajectories(ST.Scenarios, ST.ScenariosProbabilities,0);
 
             ScenarioTree reduced_tree = null;
             if (action == "rnd")
@@ -116,10 +106,6 @@ namespace ScenarioReduction
             else
                 reduced_tree = ST;
 
-
-
-
-
             if (mode == "C")
             {
                 Console.WriteLine("Reduced Tree descriptive Statistics:");
@@ -127,31 +113,13 @@ namespace ScenarioReduction
 
                 Console.WriteLine("Reduced Tree:");
                 Console.WriteLine(reduced_tree.ToString());
-                //Console.WriteLine("Reduced Scenarios");
-                //Console.WriteLine("Component 1");
-                //WriteTrajectories(SRA.ReducedScenarios, SRA.ReducedProbabilities, 0);
-                //Console.WriteLine("Component 2");
-                //WriteTrajectories(SRA.ReducedScenarios, SRA.ReducedProbabilities, 1);
-
-                // From the reduced tree
-                //for (int z = 0; z < reduced_tree.Scenarios[0][0].Length; z++)
-                //{
-                //   Console.WriteLine("RT Component " + z);
-                //  WriteTrajectories(reduced_tree.Scenarios, reduced_tree.ScenariosProbabilities, z);
-                //}
             }
-            //string[] value_names={"X_avg", "X_dif", "weather"};
 
-
-            //bool[] use_attribute ={false,false,true};
-            Console.Write(reduced_tree.AMPL_Export("", "N_", null));// use_attribute));
+            Console.Write(reduced_tree.AMPL_Export("", "N_", null));
 
 
             DateTime t1 = DateTime.Now;
-            //Console.WriteLine("Running time=" + (t1 - t0).ToString());
-
         }
-
 
         static void WriteTrajectories(double[][][] trajectories, double[] probabilities, int component)
         {
@@ -230,9 +198,6 @@ namespace ScenarioReduction
                 double p = (double)i / (double)(periods - 1);
                 double phase = 2 * 3.14 * p;
 
-                //if(inf!=-1)
-                //    mean_series[inf, i] = 1+0.7*Math.Cos( phase );
-
                 if (inf != -1)
                 {
                     mean_series[inf, i] = avg_inflows[i];
@@ -254,7 +219,6 @@ namespace ScenarioReduction
 
                 //All Factors Quadratic
 
-                //V[pra, pra] = 10.37500155;
                 V[pra, pra] = 5.37500155;
 
                 UpperBound[pra] = 7937700;
@@ -275,8 +239,8 @@ namespace ScenarioReduction
             if (inf != -1)
             {
                 log[inf] = true;
-                V[inf, inf] = 1.1;// double.Parse(textBoxInflowsV.Text);// 1.1;
-                kappa[inf] = 3;// double.Parse(textBoxInflowsK.Text);   //3 ;
+                V[inf, inf] = 1.1;
+                kappa[inf] = 3;
             }
             if (dem != -1)
             {
@@ -291,7 +255,6 @@ namespace ScenarioReduction
                 log[ren] = true;
                 //renovable
                 V[ren, ren] = .2;
-                //V[ren, ren] = 0;//kill renewable
 
                 kappa[ren] = 3;
             }
@@ -316,8 +279,6 @@ namespace ScenarioReduction
             ((MultivariateAR1Tree)tree).UpperBound = UpperBound;
 
             tree.Generate();
-            //last = tree;
-            //Info();
             return tree;
         }
 

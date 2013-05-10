@@ -75,7 +75,7 @@ namespace ScenarioReduction
         {
             AlwaysUseMontecarlo = p_AUM;
             MonteCarloRealizations = p_MCR;
-            //RRR = new Random(0);
+
             if (p_seed == -1)
                 RRR = new Random();// time dependent seed
             else
@@ -99,7 +99,6 @@ namespace ScenarioReduction
             //This part can be done only once...
 
             A = VarCov.Cholesky();
-            //A= cd.GetL();
             Z = IIDOutcomes();
 
             //Generates the root...
@@ -194,8 +193,6 @@ namespace ScenarioReduction
 
 
                 double tmp = outcome.Value[0];
-                //else //approx type =1
-                //    Value[j] = Math.Exp(-kappa[j] * delta_t) * entry_node.Value[j] + Sigma(j, delta_t);
                 Outcomes.Add(outcome);
             }//next s
             return Outcomes;
@@ -290,7 +287,6 @@ namespace ScenarioReduction
 
                 default:
                     throw new Exception("IIDOutcomes!");
-                    break;
             }//end switch
 
 
