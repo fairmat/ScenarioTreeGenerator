@@ -16,19 +16,29 @@
  */
 
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using Mono.Addins;
+
+// The following lines tell that the assembly is an addin
+[assembly: Mono.Addins.Addin("Scenario Tree Generator", "1.0.3", Category = "Export")]
+[assembly: Mono.Addins.AddinDependency("Fairmat", "1.0")]
+[assembly: Mono.Addins.AddinAuthor("Fairmat SRL")]
+[assembly: AddinDescription("Scenario Tree Generator")]
+
+// This plug-in is also an addin root.
+[assembly: Mono.Addins.AddinRoot("ScenarionTreeGenerator", "1.0")]
+
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Scenario Tree Generator")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Scenario Tree Generator")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Fairmat Srl")]
-[assembly: AssemblyProduct("ScenarioTreeGenerator.UI")]
-[assembly: AssemblyCopyright("Copyright © Fairmat Consulting SRL 2011")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany("Fairmat SRL")]
+[assembly: AssemblyCopyright("Copyright © Fairmat SRL 2009-2013")]
+[assembly: AssemblyProduct("Scenario Tree Generator")]
+[assembly: AssemblyTrademark("Fairmat")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -49,14 +59,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
-
-
-//Plugin information
-[assembly: Mono.Addins.Addin("Scenario Tree Generator", "1.0.3", Category = "Export")]
-[assembly: Mono.Addins.AddinDependency("Fairmat", "1.0")]
-[assembly: Mono.Addins.AddinAuthor("Fairmat SRL")]
-
-//this plug-in is also an addin root
-[assembly: Mono.Addins.AddinRoot("ScenarionTreeGenerator", "1.0")]
+[assembly: AssemblyVersion("1.0.3")]
+[assembly: AssemblyFileVersion("1.0.3")]
