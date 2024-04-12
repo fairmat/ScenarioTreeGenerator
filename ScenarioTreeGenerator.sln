@@ -1,9 +1,9 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScenarioTreeGenerator.UI", "ScenarioTreeGenerator.UI\ScenarioTreeGenerator.UI.csproj", "{D2945F30-0435-47E8-BF61-E3C25DD850A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScenarioReduction", "ScenarioReduction\ScenarioReduction.csproj", "{EC4AFD73-6510-4229-83B1-497A1FAD4702}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScenarioReduction", "ScenarioReduction\ScenarioReduction.csproj", "{EC4AFD73-6510-4229-83B1-497A1FAD4702}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

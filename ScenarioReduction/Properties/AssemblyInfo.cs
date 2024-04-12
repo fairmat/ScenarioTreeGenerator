@@ -17,16 +17,6 @@
 
 using System.Reflection;
 using System.Runtime.InteropServices;
-
-// General Information about an assembly is controlled through the following
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-[assembly: AssemblyTitle("Scenario Reduction")]
-[assembly: AssemblyDescription("Scenario Reduction")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Fairmat SRL")]
-[assembly: AssemblyCopyright("Copyright © Fairmat SRL 2009-2013")]
-[assembly: AssemblyProduct("Scenario Reduction")]
 [assembly: AssemblyTrademark("Fairmat")]
 [assembly: AssemblyCulture("")]
 
@@ -37,16 +27,3 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("5d4ee326-ec9c-495f-a6fc-7c0eca5ab828")]
-
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers
-// by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0")]
-[assembly: AssemblyFileVersion("1.0.0")]
