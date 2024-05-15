@@ -16,23 +16,14 @@
  */
 
 using System.Reflection;
-using System.Runtime.InteropServices;
 using Mono.Addins;
 
 // The following lines tell that the assembly is an addin
-[assembly: Mono.Addins.Addin("Scenario Tree Generator", "1.0.3", Category = "Export")]
-[assembly: Mono.Addins.AddinDependency("Fairmat", "1.0")]
-[assembly: Mono.Addins.AddinAuthor("Fairmat SRL")]
+[assembly: Addin("Scenario Tree Generator", "1.0.3", Category = "Export")]
+[assembly: AddinDependency("Fairmat", "1.0")]
+[assembly: AddinAuthor("Fairmat SRL")]
 [assembly: AddinDescription("Scenario Tree Generator")]
-
 // This plug-in is also an addin root.
-[assembly: Mono.Addins.AddinRoot("ScenarionTreeGenerator", "1.0")]
+[assembly: AddinRoot("ScenarionTreeGenerator", "1.0")]
+
 [assembly: AssemblyTrademark("Fairmat")]
-
-// Setting ComVisible to false makes the types in this assembly not visible
-// to COM components.  If you need to access a type in this assembly from
-// COM, set the ComVisible attribute to true on that type.
-[assembly: ComVisible(false)]
-
-// The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("706dc359-e8fe-486d-8491-c4aefcb46940")]

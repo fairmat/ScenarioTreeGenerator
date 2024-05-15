@@ -3,8 +3,6 @@
     <TargetFrameworks>netstandard2.0;net48</TargetFrameworks>
     <OutputType>Library</OutputType>
     <RootNamespace>scenario_reduction</RootNamespace>
-    <StartupObject>
-    </StartupObject>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AssemblyTitle>Scenario Reduction</AssemblyTitle>
     <Description>Scenario Reduction</Description>
@@ -20,7 +18,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DVPLDOM">
@@ -35,7 +33,7 @@
     <Reference Include="DVPLInterfaces">
       <HintPath>..\..\DVPLReferences\DVPLInterfaces.dll</HintPath>
     </Reference>
-    <Reference Include="DVPLUtils, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0c08731b4bb5a116, processorArchitecture=MSIL">
+    <Reference Include="DVPLUtils">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DVPLReferences\DVPLUtils.dll</HintPath>
     </Reference>
@@ -50,8 +48,6 @@
     <Content Include="documentation.txt" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Mono.Addins">
-      <Version>1.4.1</Version>
-    </PackageReference>
+    <PackageReference Include="Mono.Addins" Version="1.4.1" />
   </ItemGroup>
 </Project>
