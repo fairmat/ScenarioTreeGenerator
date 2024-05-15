@@ -129,3 +129,6 @@ UpgradeLog*.XML
 *.mtc
 *.mtc0
 
+# JetBrains Rider files
+.idea/
+*.sln.iml
